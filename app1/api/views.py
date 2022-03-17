@@ -42,8 +42,8 @@ class AdminUserCreateView(APIView):
             User.objects.get(username=request.data.get('username')).exist()
             return Response({'error': 'User already exists'}, status=HTTP_400_BAD_REQUEST)
         except:
-            if request.data.get('user_type')=='2':
-                obj=User.objects.create(username=request.data.get('username'),email=request.data.get('email'),mobile=request.data.get('mobile'), user_type='3',is_staff=True,is_superuser=False,gender=request.data.get('gender'),image=request.data.get('image'),branch=request.data.get('branch'))
+            if request.data.get('user_type')==2:
+                obj=User.objects.create(username=request.data.get('username'),email=request.data.get('email'),mobile=request.data.get('mobile'), user_type='2',is_staff=True,is_superuser=False,gender=request.data.get('gender'),image=request.data.get('image'),branch=request.data.get('branch'))
                 obj.set_password(request.data.get('password')) 
                 obj.save()
                 return Response({'Done': 'profile added succesfully', 'data': True}, status=HTTP_200_OK)
